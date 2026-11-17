@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- The résumé is one page (`src/routes/index.tsx`) composed of chapter sections in `src/components/resume/`; all résumé copy lives in `src/components/resume/data.ts` so content edits never touch layout code.
+- The fruit physics sandbox imports `matter-js` dynamically inside an effect, because it is browser-only and must not run during SSR.

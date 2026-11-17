@@ -1,10 +1,3 @@
-/*
- * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
- * - Keep every @import in this top block, above @theme and the rest of the file. Install an
- *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
- *   build resolves @import from the filesystem. Load those with a <link> in the head() of
- *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
- */
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -12,24 +5,16 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The design lives in this file: oklch color tokens on the shadcn variables
- * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
- * new tokens as needed, font tokens, and custom styles and animations.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * "Seed to Tree to Fruit" design system.
+ * A single scrolling story whose backdrop travels through five greens:
+ * moss -> forest -> sage -> mint -> sunlit. Display type is Instrument Serif,
+ * body type is Manrope. Everything glows softly, glass is frosted.
  */
 
 @theme inline {
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -70,77 +55,86 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Story palette */
+  --color-moss: var(--moss);
+  --color-forest: var(--forest);
+  --color-sage: var(--sage);
+  --color-mint: var(--mint);
+  --color-sunlit: var(--sunlit);
+  --color-glow: var(--glow);
+  --color-glow-soft: var(--glow-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-soft);
+  --color-fruit-project: var(--fruit-project);
+  --color-fruit-athletic: var(--fruit-athletic);
+  --color-fruit-skill: var(--fruit-skill);
+  --color-fruit-hobby: var(--fruit-hobby);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  --radius: 1.25rem;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --moss: oklch(0.2 0.035 152);
+  --forest: oklch(0.33 0.07 150);
+  --sage: oklch(0.6 0.065 145);
+  --mint: oklch(0.91 0.045 158);
+  --sunlit: oklch(0.975 0.018 95);
+  --glow: oklch(0.88 0.19 142);
+  --glow-soft: oklch(0.88 0.19 142 / 35%);
+  --ink: oklch(0.24 0.05 152);
+  --ink-soft: oklch(0.42 0.05 150);
+  --cream: oklch(0.97 0.02 110);
+  --cream-soft: oklch(0.86 0.04 140);
+  --fruit-project: oklch(0.7 0.18 35);
+  --fruit-athletic: oklch(0.76 0.17 60);
+  --fruit-skill: oklch(0.85 0.15 95);
+  --fruit-hobby: oklch(0.6 0.19 355);
+
+  --background: var(--moss);
+  --foreground: var(--cream);
+  --card: oklch(1 0 0 / 8%);
+  --card-foreground: var(--cream);
+  --popover: var(--forest);
+  --popover-foreground: var(--cream);
+  --primary: var(--glow);
+  --primary-foreground: var(--ink);
+  --secondary: var(--forest);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.3 0.04 150);
+  --muted-foreground: var(--cream-soft);
+  --accent: var(--sage);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: var(--cream);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: var(--glow);
+  --chart-1: var(--fruit-project);
+  --chart-2: var(--glow);
+  --chart-3: var(--sage);
+  --chart-4: var(--fruit-skill);
+  --chart-5: var(--fruit-hobby);
+  --sidebar: var(--moss);
+  --sidebar-foreground: var(--cream);
+  --sidebar-primary: var(--glow);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: var(--forest);
+  --sidebar-accent-foreground: var(--cream);
+  --sidebar-border: oklch(1 0 0 / 14%);
+  --sidebar-ring: var(--glow);
+
+  --gradient-soil: linear-gradient(180deg, var(--moss) 0%, var(--moss) 60%, var(--forest) 100%);
+  --gradient-roots: linear-gradient(180deg, var(--forest) 0%, color-mix(in oklab, var(--forest) 55%, var(--sage)) 100%);
+  --gradient-trunk: linear-gradient(180deg, color-mix(in oklab, var(--forest) 55%, var(--sage)) 0%, var(--sage) 45%, color-mix(in oklab, var(--sage) 50%, var(--mint)) 100%);
+  --gradient-branches: linear-gradient(180deg, color-mix(in oklab, var(--sage) 50%, var(--mint)) 0%, var(--mint) 40%, var(--mint) 100%);
+  --gradient-leaves: linear-gradient(180deg, var(--mint) 0%, color-mix(in oklab, var(--mint) 50%, var(--sunlit)) 100%);
+  --gradient-fruits: linear-gradient(180deg, color-mix(in oklab, var(--mint) 50%, var(--sunlit)) 0%, var(--sunlit) 35%);
+
+  --shadow-glow: 0 0 40px -6px var(--glow-soft), 0 0 120px -20px var(--glow-soft);
+  --shadow-glass: 0 20px 60px -25px oklch(0.15 0.05 150 / 55%);
 }
 
 @layer base {
@@ -148,8 +142,138 @@
     border-color: var(--color-border);
   }
 
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    background-color: var(--color-moss);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--glow);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  .bg-soil { background: var(--gradient-soil); }
+  .bg-roots { background: var(--gradient-roots); }
+  .bg-trunk { background: var(--gradient-trunk); }
+  .bg-branches { background: var(--gradient-branches); }
+  .bg-leaves { background: var(--gradient-leaves); }
+  .bg-fruits { background: var(--gradient-fruits); }
+
+  /* Frosted glass on dark greens */
+  .glass {
+    background: linear-gradient(140deg, oklch(1 0 0 / 12%), oklch(1 0 0 / 4%));
+    border: 1px solid oklch(1 0 0 / 16%);
+    backdrop-filter: blur(22px) saturate(140%);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 oklch(1 0 0 / 14%);
+  }
+
+  /* Deeper tinted glass for mid-tone greens */
+  .glass-deep {
+    background: linear-gradient(140deg, oklch(0.26 0.05 150 / 72%), oklch(0.22 0.045 150 / 55%));
+    border: 1px solid oklch(1 0 0 / 18%);
+    backdrop-filter: blur(22px) saturate(140%);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 oklch(1 0 0 / 12%);
+  }
+
+  /* Frosted glass on light greens */
+  .glass-light {
+    background: linear-gradient(140deg, oklch(1 0 0 / 62%), oklch(1 0 0 / 30%));
+    border: 1px solid oklch(1 0 0 / 70%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 60px -30px oklch(0.3 0.07 150 / 45%), inset 0 1px 0 oklch(1 0 0 / 80%);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 24px var(--glow-soft), 0 0 60px var(--glow-soft);
+  }
+
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+
+  .seed-orb {
+    background: radial-gradient(circle at 35% 30%, oklch(0.97 0.08 140 / 95%), var(--glow) 35%, oklch(0.55 0.15 145 / 40%) 70%, transparent 72%);
+    box-shadow: 0 0 60px 10px var(--glow-soft), 0 0 200px 40px oklch(0.88 0.19 142 / 18%);
+  }
+
+  .node-dot {
+    background: radial-gradient(circle, oklch(0.97 0.08 140), var(--glow) 45%, transparent 70%);
+    box-shadow: 0 0 24px 4px var(--glow-soft);
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .fruit {
+    background: radial-gradient(circle at 32% 28%, oklch(1 0 0 / 75%), transparent 28%),
+      radial-gradient(circle at 50% 55%, var(--fruit-color), color-mix(in oklab, var(--fruit-color) 70%, oklch(0.2 0.05 30)) 100%);
+    box-shadow: 0 0 32px -4px color-mix(in oklab, var(--fruit-color) 70%, transparent),
+      inset -6px -10px 18px oklch(0 0 0 / 18%);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes leaf-fall {
+  0% { transform: translate3d(0, -12vh, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.9; }
+  50% { transform: translate3d(40px, 50vh, 0) rotate(180deg); }
+  90% { opacity: 0.9; }
+  100% { transform: translate3d(-30px, 135vh, 0) rotate(360deg); opacity: 0; }
+}
+
+@keyframes leaf-sway {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-18px) rotate(8deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@utility animate-marquee {
+  animation: marquee 60s linear infinite;
+}
+
+@utility animate-leaf-fall {
+  animation: leaf-fall linear infinite;
+}
+
+@utility animate-leaf-sway {
+  animation: leaf-sway 6s ease-in-out infinite;
+}
+
+@utility animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-leaf-fall,
+  .animate-leaf-sway,
+  .animate-pulse-glow {
+    animation: none;
+  }
+  html { scroll-behavior: auto; }
 }
