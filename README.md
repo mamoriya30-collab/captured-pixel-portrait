@@ -22,3 +22,34 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Run it on your local network
+
+Any device on the same Wi-Fi (phone, tablet, another laptop) can open the site
+once you start it with one of these.
+
+Quick way — the live dev server:
+
+```sh
+npm run dev:lan
+```
+
+Prints a `Network:` address such as `http://192.168.1.20:5173/`. Open that on
+any device on the network.
+
+Steadier way — the built site, no hot reload:
+
+```sh
+npm run build:node
+npm run start:lan
+```
+
+`start:lan` listens on every interface at port 3000, so other devices open
+`http://<your-computer's IP>:3000/`. Find your computer's IP with `ipconfig`
+(Windows), `ip get ifaddr` (macOS), or `hostname -I` (Linux). Set a different
+port with `PORT=8080 npm run start:lan` (`set PORT=8080&& npm run start:lan` on
+Windows).
+
+If a device can't connect, allow the port through the firewall, and note that
+some Wi-Fi networks (hotels, offices, guest networks) block device-to-device
+traffic.
