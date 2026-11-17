@@ -7,13 +7,12 @@
 /*
  * "Seed to Tree to Fruit" design system.
  * A single scrolling story whose backdrop travels through five greens:
- * moss -> forest -> sage -> mint -> sunlit. Display type is Instrument Serif,
- * body type is Manrope. Everything glows softly, glass is frosted.
+ * moss -> forest -> sage -> mint -> sunlit. Type is Outfit: bold lowercase display, ultra-light body. Everything glows softly, glass is frosted.
  */
 
 @theme inline {
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -150,6 +149,8 @@
     background-color: var(--color-moss);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 200;
+    letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -227,6 +228,9 @@
 
 @utility font-display {
   font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: lowercase;
+  letter-spacing: -0.035em;
 }
 
 @keyframes marquee {
